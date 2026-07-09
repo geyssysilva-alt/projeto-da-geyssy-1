@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLV Modas - Tendências 2026</title>
+    <title>SLV Modas - Tendencias 2026</title>
     <style>
-        /* Configuração global do corpo da página */
+        /* Configuracao global da pagina */
         body {
             background-color: rgb(0, 132, 255);
             color: aliceblue;
@@ -37,8 +37,6 @@
         main {
             background-color: aliceblue;
             color: rgb(24, 24, 110);
-            max-width: 1000px;
-            margin: 0 auto;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -47,30 +45,48 @@
             border: 5px solid #080053;
         }
 
+        /* Card do Produto */
         .produto {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             border: 1px solid #ccc;
             border-radius: 8px;
             background-color: white;
+            max-width: 280px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        img {
+        .produto img {
             width: 150px;
             height: 171px;
             object-fit: cover;
             border-radius: 8px;
+            margin-bottom: 12px;
         }
 
+        .produto h3 {
+            margin: 10px 0 5px 0;
+        }
+
+        .produto p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #080053;
+            margin-bottom: 15px;
+        }
+
+        /* Botao do WhatsApp */
         button {
             background-color: #25D366; 
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
+            width: 100%;
+            transition: background 0.2s;
         }
 
         button:hover {
@@ -83,36 +99,49 @@
     <header>
         <h1>SLV Modas</h1>
         <nav>
-            <a href="#">Início</a>
+            <a href="#">Inicio</a>
             <a href="#">Produtos</a>
             <a href="#">Contato</a>
         </nav>
     </header>
 
     <main>
-        <h2>Tendências de Moda 2026</h2>
-        
-        <img src="1762908517_23421.jpg" alt="Camiseta Estampada">
+        <h2>Tendencias de Moda 2026</h2>
         
         <div class="produto">
+            <img src="1762908517_23421.jpg" alt="Camiseta Estampada">
             <h3>Camiseta Estampada</h3>
             <p>R$ 79,99</p>
-            <button>Comprar pelo WhatsApp (<span id="contador">0</span>)</button>
+            <button id="btn-comprar">
+                Comprar pelo WhatsApp (<span id="contador">0</span>)
+            </button>
         </div>
     </main>
 
     <script>
-        const botao = document.querySelector("button");
+        // Selecao dos elementos HTML
+        const botao = document.querySelector("#btn-comprar");
         const textoContador = document.querySelector("#contador");
+        
         let cliques = 0;
 
-        botao.addEventListener("click", botaoClicado);
+        // Configuracao do WhatsApp (Mude para o seu numero real)
+        // Formato: Codigo do pais (55) + DDD + Numero (ex: 5511999999999)
+        const numeroWhatsapp = "5500999999999"; 
+        const mensagemTexto = "Ola! Gostaria de encomendar a Camiseta Estampada de R$ 79,99.";
 
-        function botaoClicado() {
-            console.log("Fui clicado!");
+      
+        botao.addEventListener("click", () => {
+           
             cliques++;
             textoContador.textContent = cliques;
-        }
+
+            
+            const linkZap = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemTexto)}`;
+
+        
+            window.open(linkZap, "_blank");
+        });
     </script>
 </body>
 </html>
